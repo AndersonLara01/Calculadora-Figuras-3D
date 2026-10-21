@@ -87,7 +87,7 @@ class Inicio:
         self.ventana.resizable(False, False)
 
         #Titulo de la ventana
-        self.title = tk.Label(self.ventana, text="Seleccione la figura que desea calcular", font=("Bright Sunlist", 24), bg="#AAAAAA")
+        self.title = tk.Label(self.ventana, text="Seleccione la figura que desea calcular", font=("Bright Sunlist", 24), bg="#9C8D8D")
         self.title.pack(side="top", fill="both")
 
         #Color de la ventana
@@ -105,39 +105,45 @@ class Inicio:
         color_botones = "#00E96E"
 
         #Botones de cada figura
-        self.cubo = tk.Button(self.frame, text="Cubo", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_cubo)
+        self.cubo = tk.Button(self.frame, text="Cubo", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_cubo, width=13, height=2)
         self.cubo.grid(row=0, column=0, padx=20, pady=20)
 
-        self.esfera = tk.Button(self.frame, text="Esfera", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_esfera)
+        self.esfera = tk.Button(self.frame, text="Esfera", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_esfera, width=13, height=2)
         self.esfera.grid(row=0, column=1, padx=20, pady=20)
 
-        self.cilindro = tk.Button(self.frame, text="Cilindro", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_cilindro)
+        self.cilindro = tk.Button(self.frame, text="Cilindro", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_cilindro, width=13, height=2)
         self.cilindro.grid(row=1, column=0, padx=20, pady=20)
 
-        self.nueva_figura = tk.Button(self.frame, text="Proximamente...", font=("Bright Sunlist", 20), background=color_botones)
+        self.nueva_figura = tk.Button(self.frame, text="Proximamente...", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_nueva_figura, width=13, height=2)
         self.nueva_figura.grid(row=1, column=1, padx=20, pady=20)
 
         #Mantener la ventana abierta
         self.ventana.mainloop()
 
+    #Color de las ventanas de cálculo de cada figura
+    color_ventanas = "#362486"
+
+    #Color campos de texto
+    color_textos = "#00E96E"
+
     #Clase para abrir la ventana de cálculo del cubo
     def abrir_ventana_cubo(self):
-        ventana_cubo = tk.Toplevel(self.ventana)
+        ventana_cubo = tk.Toplevel(self.ventana, bg=self.color_ventanas)
         ventana_cubo.title("Cálculo de cubo")
-        ventana_cubo.geometry("350x320")
+        ventana_cubo.geometry("350x320+90+90")
         ventana_cubo.resizable(False, False)
 
         #Campos de entrada de datos cubo
-        tk.Label(ventana_cubo, text="Lado del cubo:").pack(pady=(15, 0))
+        tk.Label(ventana_cubo, text="Lado del cubo:", bg=self.color_textos).pack(pady=(15, 0))
         entrada_lado = tk.Entry(ventana_cubo)
         entrada_lado.pack()
 
-        tk.Label(ventana_cubo, text="Factor de escala (opcional):").pack(pady=(10, 0))
+        tk.Label(ventana_cubo, text="Factor de escala (opcional):", bg=self.color_textos).pack(pady=(10, 0))
         entrada_factor = tk.Entry(ventana_cubo)
         entrada_factor.pack()
 
         #Mostrar el resultado del cálculo de cubo
-        resultado = tk.Label(ventana_cubo, text="", justify="left", wraplength=320)
+        resultado = tk.Label(ventana_cubo, text="", justify="left", wraplength=320, bg=self.color_textos)
         resultado.pack(padx=10, pady=15)
 
         #Boton para calcular los datos ingresados
@@ -163,22 +169,22 @@ class Inicio:
 
     #Clase para abrir la ventana de cálculo de la esfera    
     def abrir_ventana_esfera(self):
-        ventana_esfera = tk.Toplevel(self.ventana)
+        ventana_esfera = tk.Toplevel(self.ventana, bg=self.color_ventanas)
         ventana_esfera.title("Cálculo de la esfera")
-        ventana_esfera.geometry("350x320")
+        ventana_esfera.geometry("350x320+1100+90")
         ventana_esfera.resizable(False, False)        
 
         #Campos de entrada de datos esfera
-        tk.Label(ventana_esfera, text="Radio de la esfera:").pack(pady=(15, 0))
+        tk.Label(ventana_esfera, text="Radio de la esfera:", bg=self.color_textos).pack(pady=(15, 0))
         entrada_radio = tk.Entry(ventana_esfera)
         entrada_radio.pack()
 
-        tk.Label(ventana_esfera, text="Factor de escala (opcional):").pack(pady=(10, 0))
+        tk.Label(ventana_esfera, text="Factor de escala (opcional):", bg=self.color_textos).pack(pady=(10, 0))
         entrada_factor = tk.Entry(ventana_esfera)
         entrada_factor.pack()
 
         #Mostrar el resultado de esfera
-        resultado = tk.Label(ventana_esfera, text="", justify="left", wraplength=320)
+        resultado = tk.Label(ventana_esfera, text="", justify="left", wraplength=320, bg=self.color_textos)
         resultado.pack(padx=10, pady=15)
 
         #Boton para calcular los datos ingresados
@@ -204,26 +210,26 @@ class Inicio:
 
     #Clase para abrir la ventana de cálculo del cilindro
     def abrir_ventana_cilindro(self):
-        ventana_cilindro = tk.Toplevel(self.ventana)
+        ventana_cilindro = tk.Toplevel(self.ventana, bg=self.color_ventanas)
         ventana_cilindro.title("Cálculo del cilindro")
-        ventana_cilindro.geometry("350x320")
+        ventana_cilindro.geometry("350x320+90+450")
         ventana_cilindro.resizable(False, False)
 
         #Campos de entrada de datos cilindro
-        tk.Label(ventana_cilindro, text="Radio del cilindro:").pack(pady=(15, 0))
+        tk.Label(ventana_cilindro, text="Radio del cilindro:", bg=self.color_textos).pack(pady=(15, 0))
         entrada_radio = tk.Entry(ventana_cilindro)
         entrada_radio.pack()
 
-        tk.Label(ventana_cilindro, text="Altura del cilindro:").pack(pady=(10, 0))
+        tk.Label(ventana_cilindro, text="Altura del cilindro:", bg=self.color_textos).pack(pady=(10, 0))
         entrada_altura = tk.Entry(ventana_cilindro)
         entrada_altura.pack()
 
-        tk.Label(ventana_cilindro, text="Factor de escala (opcional):").pack(pady=(5, 0))
+        tk.Label(ventana_cilindro, text="Factor de escala (opcional):", bg=self.color_textos).pack(pady=(5, 0))
         entrada_factor = tk.Entry(ventana_cilindro)
         entrada_factor.pack()
 
         #Mostrar el resultado del cilindro
-        resultado = tk.Label(ventana_cilindro, text="", justify="left", wraplength=320)
+        resultado = tk.Label(ventana_cilindro, text="", justify="left", wraplength=320, bg=self.color_textos)
         resultado.pack(padx=10, pady=15)
 
         #Boton para calcular los datos ingresados
@@ -248,5 +254,12 @@ class Inicio:
         self.figuras.append(figura)
         resultado.config(text=figura.obtener_resultado(factor_escala))
 
+    def abrir_nueva_figura(self):
+        ventana_nueva_figura = tk.Toplevel(self.ventana, bg=self.color_ventanas)
+        ventana_nueva_figura.title("Disponible proximamente...")
+        ventana_nueva_figura.geometry("350x320+1100+450")
+        tk.Label(ventana_nueva_figura, text="Espacio disponible \n para nuevas figuras :)", justify="center", font=("Bright Sunlist", 25), bg=self.color_textos).pack(expand=True)
+
+# Iniciar la aplicación
 if __name__ == "__main__":
     Inicio()
