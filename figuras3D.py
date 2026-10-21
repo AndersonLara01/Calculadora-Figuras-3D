@@ -87,11 +87,11 @@ class Inicio:
         self.ventana.resizable(False, False)
 
         #Titulo de la ventana
-        self.title = tk.Label(self.ventana, text="Seleccione la figura que desea calcular", font=("Bright Sunlist", 24), bg="#9C8D8D")
+        self.title = tk.Label(self.ventana, text="Seleccione la figura que desea calcular", font=("Bright Sunlist", 24), bg="#C8BCBC")
         self.title.pack(side="top", fill="both")
 
         #Color de la ventana
-        color_fondo = "#362486"
+        color_fondo = "#343D8A"
 
         #Frame de la ventana
         self.frame = tk.Frame(self.ventana, bg=color_fondo)
@@ -102,7 +102,7 @@ class Inicio:
         self.frame.rowconfigure(1, weight=1)
 
         #Color de los botones
-        color_botones = "#00E96E"
+        color_botones = "#C9ECEE"
 
         #Botones de cada figura
         self.cubo = tk.Button(self.frame, text="Cubo", font=("Bright Sunlist", 20), background=color_botones, command=self.abrir_ventana_cubo, width=13, height=2)
@@ -120,11 +120,28 @@ class Inicio:
         #Mantener la ventana abierta
         self.ventana.mainloop()
 
+    # Función para procesar las figuras y obtener el resultado de la figura seleccionada
+    def procesar_figuras(self, figura_seleccionada, factor_escala=None):
+        resultado_seleccionado = None
+
+        #Iterar sobre las figuras y obtener el resultado de la figura seleccionada
+        for figura in self.figuras:
+            factor = factor_escala if figura is figura_seleccionada else None
+        resultado_figura = figura.obtener_resultado(factor)
+
+        if figura is figura_seleccionada:
+            resultado_seleccionado = resultado_figura
+
+        if resultado_seleccionado is None:
+            raise ValueError("La figura seleccionada no está en la lista.")
+
+        return resultado_seleccionado    
+
     #Color de las ventanas de cálculo de cada figura
-    color_ventanas = "#362486"
+    color_ventanas = "#343D8A"
 
     #Color campos de texto
-    color_textos = "#00E96E"
+    color_textos = "#C9ECEE"
 
     #Clase para abrir la ventana de cálculo del cubo
     def abrir_ventana_cubo(self):
@@ -165,7 +182,7 @@ class Inicio:
         #Almacenar la figura cubo en la lista de figuras mezcladas
         figura = Cubo(lado)
         self.figuras.append(figura)
-        resultado.config(text=figura.obtener_resultado(factor_escala))
+        resultado.config(text=self.procesar_figuras(figura, factor_escala))
 
     #Clase para abrir la ventana de cálculo de la esfera    
     def abrir_ventana_esfera(self):
@@ -206,7 +223,7 @@ class Inicio:
         #Almacenar la figura esfera en la lista de figuras mezcladas
         figura = Esfera(radio)
         self.figuras.append(figura)
-        resultado.config(text=figura.obtener_resultado(factor_escala))
+        resultado.config(text=self.procesar_figuras(figura, factor_escala))
 
     #Clase para abrir la ventana de cálculo del cilindro
     def abrir_ventana_cilindro(self):
@@ -252,7 +269,7 @@ class Inicio:
         #Almacenar la figura cilindro en la lista de figuras mezcladas
         figura = Cilindro(radio, altura)
         self.figuras.append(figura)
-        resultado.config(text=figura.obtener_resultado(factor_escala))
+        resultado.config(text=self.procesar_figuras(figura, factor_escala))
 
     def abrir_nueva_figura(self):
         ventana_nueva_figura = tk.Toplevel(self.ventana, bg=self.color_ventanas)
